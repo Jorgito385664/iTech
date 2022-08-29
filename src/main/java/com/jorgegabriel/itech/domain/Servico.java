@@ -9,34 +9,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Categoria implements Serializable {
+public class Servico implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	// atributos
+	//atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	private Double preco;
 	
 	//associações
-	@ManyToMany(mappedBy = "categorias")
-	private List<Servico> servicos = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "SERVICO_CATEGORIA",
+	   joinColumns = @JoinColumn(name = "servico_id"),
+	   inverseJoinColumns = @JoinColumn(name = "categoria_id")
+			)
+	private List<Categoria> categorias = new ArrayList<>();
 	
-	
-	
-	// construtores
-	public Categoria() {
+	//construtores
+	public Servico() {
 		
 	}
 
-	public Categoria(Integer id, String nome) {
+	public Servico(Integer id, String nome, Double preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.preco = preco;
 	}
 	
 	//getters e setters
@@ -56,19 +62,25 @@ public class Categoria implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	public List<Servico> getServicos() {
-		return servicos;
+
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 	
-	
-	// Hashcode e equals
-	
+	//hashcode e equals
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -82,10 +94,12 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Servico other = (Servico) obj;
 		return Objects.equals(id, other.id);
 	}
-
+	
+	
+	
 	
 	
 	
