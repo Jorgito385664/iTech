@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Servico implements Serializable {
 	
@@ -26,6 +28,7 @@ public class Servico implements Serializable {
 	private Double preco;
 	
 	//associações
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "SERVICO_CATEGORIA",
 	   joinColumns = @JoinColumn(name = "servico_id"),
