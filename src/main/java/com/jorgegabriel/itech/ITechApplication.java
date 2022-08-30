@@ -13,6 +13,7 @@ import com.jorgegabriel.itech.domain.Cidade;
 import com.jorgegabriel.itech.domain.Cliente;
 import com.jorgegabriel.itech.domain.Endereco;
 import com.jorgegabriel.itech.domain.Estado;
+import com.jorgegabriel.itech.domain.ItemPedido;
 import com.jorgegabriel.itech.domain.Pagamento;
 import com.jorgegabriel.itech.domain.PagamentoComBoleto;
 import com.jorgegabriel.itech.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.jorgegabriel.itech.repositories.CidadeRepository;
 import com.jorgegabriel.itech.repositories.ClienteRepository;
 import com.jorgegabriel.itech.repositories.EnderecoRepository;
 import com.jorgegabriel.itech.repositories.EstadoRepository;
+import com.jorgegabriel.itech.repositories.ItemPedidoRepository;
 import com.jorgegabriel.itech.repositories.PagamentoRepository;
 import com.jorgegabriel.itech.repositories.PedidoRepository;
 import com.jorgegabriel.itech.repositories.ServicoRepository;
@@ -55,6 +57,9 @@ public class ITechApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ITechApplication.class, args);
@@ -129,6 +134,22 @@ public class ITechApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1,s1,0.00, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1,s3,0.00, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2,s2,100.00, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		s1.getItens().addAll(Arrays.asList(ip1));
+		s2.getItens().addAll(Arrays.asList(ip3));
+		s3.getItens().addAll(Arrays.asList(ip2));
+		
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+		
+		
 		
 		
 	}
