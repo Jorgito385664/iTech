@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Servico implements Serializable {
@@ -36,6 +37,7 @@ public class Servico implements Serializable {
 	@JoinTable(name = "SERVICO_CATEGORIA", joinColumns = @JoinColumn(name = "servico_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="id.servico")
 	private Set<ItemPedido> itens = new HashSet<>();
 
@@ -52,7 +54,8 @@ public class Servico implements Serializable {
 	}
 
 	// getters e setters
-
+	
+	@JsonIgnore
 	public List<Pedido> getPedidos() {
 
 		List<Pedido> lista = new ArrayList<>();
