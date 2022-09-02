@@ -33,6 +33,11 @@ public class Endereco implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="enderecosPrestador")
+	private PrestadorDeServico prestadorDeServico;
+	
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
@@ -56,6 +61,21 @@ public class Endereco implements Serializable{
 	}
 	
 	
+	
+	
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
+			PrestadorDeServico prestadorDeServico, Cidade cidade) {
+		super();
+		this.id = id;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cep = cep;
+		this.prestadorDeServico = prestadorDeServico;
+		this.cidade = cidade;
+	}
+
 	// getters e setters
 	
 	public Integer getId() {
@@ -122,8 +142,19 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 	}
 	
+	public PrestadorDeServico getPrestadorDeServico() {
+		return prestadorDeServico;
+	}
+
+	public void setPrestadorDeServico(PrestadorDeServico prestadorDeServico) {
+		this.prestadorDeServico = prestadorDeServico;
+	}
+	
+	
 	// hashcode e equals
 	
+	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

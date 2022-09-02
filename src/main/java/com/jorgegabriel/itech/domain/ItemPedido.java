@@ -30,10 +30,11 @@ public class ItemPedido implements Serializable{
 	}
 
 
-	public ItemPedido(Pedido pedido, Servico servico, Double desconto, Double preco) {
+	public ItemPedido(Pedido pedido, Servico servico, PrestadorDeServico prestadorDeServico, Double desconto, Double preco) {
 		super();
 		id.setPedido(pedido);
 		id.setServico(servico);
+		id.setPrestadorDeServico(prestadorDeServico);
 		this.desconto = desconto;
 		this.preco = preco;
 	}
@@ -48,6 +49,12 @@ public class ItemPedido implements Serializable{
 	public Servico getServico() {
 		return id.getServico();
 	}
+	
+	public PrestadorDeServico getPrestadorDeServico() {
+		return id.getPrestadorDeServico();
+	}
+	
+	
 	
 	
 	public ItemPedidoPK getId() {

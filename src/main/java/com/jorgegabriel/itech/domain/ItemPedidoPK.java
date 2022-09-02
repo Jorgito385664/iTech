@@ -21,6 +21,10 @@ public class ItemPedidoPK implements Serializable{
 	@JoinColumn(name="servico_id")
 	private Servico servico;
 	
+	@ManyToOne
+	@JoinColumn(name="prestador_de_servico_id")
+	private PrestadorDeServico prestadorDeServico;
+	
 	
 	public Pedido getPedido() {
 		return pedido;
@@ -34,6 +38,14 @@ public class ItemPedidoPK implements Serializable{
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
+	
+	public PrestadorDeServico getPrestadorDeServico() {
+		return prestadorDeServico;
+	}
+	public void setPrestadorDeServico(PrestadorDeServico prestadorDeServico) {
+		this.prestadorDeServico = prestadorDeServico;
+	}
+	
 	
 	
 	@Override

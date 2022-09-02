@@ -39,6 +39,11 @@ public class Servico implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="id.servico")
 	private Set<ItemPedido> itens = new HashSet<>();
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "SERVICO_PRESTADOR", joinColumns = @JoinColumn(name = "servico_id"), inverseJoinColumns = @JoinColumn(name = "prestador_id"))
+	private List<PrestadorDeServico> prestadoresDeServico = new ArrayList<>();
 
 	// construtores
 	public Servico() {
@@ -105,8 +110,18 @@ public class Servico implements Serializable {
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
+	
+	public List<PrestadorDeServico> getPrestadoresDeServico() {
+		return prestadoresDeServico;
+	}
+
+	public void setPrestadoresDeServico(List<PrestadorDeServico> prestadoresDeServico) {
+		this.prestadoresDeServico = prestadoresDeServico;
+	}
 
 	// hashcode e equals
+
+	
 
 	@Override
 	public int hashCode() {

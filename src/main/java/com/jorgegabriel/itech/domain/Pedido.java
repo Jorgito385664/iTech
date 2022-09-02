@@ -46,6 +46,14 @@ public class Pedido implements Serializable{
 	@JoinColumn(name="endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 	
+	@ManyToOne
+	@JoinColumn(name="prestador_de_servico_id")
+	private PrestadorDeServico prestadorDeServico;
+	
+	@ManyToOne
+	@JoinColumn(name="endereco_de_prestador_id")
+	private Endereco enderecoDePrestador;
+	
 	@OneToMany(mappedBy="id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
@@ -54,16 +62,42 @@ public class Pedido implements Serializable{
 	public Pedido() {
 		
 	}
-
+	
+	
 	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
+		
+	}
+
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega, PrestadorDeServico prestadorDeServico, Endereco enderecoDePrestador) {
+		super();
+		this.id = id;
+		this.instante = instante;
+		this.cliente = cliente;
+		this.enderecoDeEntrega = enderecoDeEntrega;
+		this.prestadorDeServico = prestadorDeServico;
+		this.enderecoDePrestador = enderecoDePrestador;
 	}
 	
 	
+	
+	
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega,
+			PrestadorDeServico prestadorDeServico, Endereco enderecoDePrestador, Set<ItemPedido> itens) {
+		super();
+		this.id = id;
+		this.instante = instante;
+		this.cliente = cliente;
+		this.enderecoDeEntrega = enderecoDeEntrega;
+		this.prestadorDeServico = prestadorDeServico;
+		this.enderecoDePrestador = enderecoDePrestador;
+		this.itens = itens;
+	}
+
 	// getters e setters
 	
 	public Integer getId() {
@@ -115,8 +149,25 @@ public class Pedido implements Serializable{
 		this.itens = itens;
 	}
 	
+	public PrestadorDeServico getPrestadorDeServico() {
+		return prestadorDeServico;
+	}
+
+	public void setPrestadorDeServico(PrestadorDeServico prestadorDeServico) {
+		this.prestadorDeServico = prestadorDeServico;
+	}
+
+	public Endereco getEnderecoDePrestador() {
+		return enderecoDePrestador;
+	}
+
+	public void setEnderecoDePrestador(Endereco enderecoDePrestador) {
+		this.enderecoDePrestador = enderecoDePrestador;
+	}
 	
 	// hashcode e equals
+
+	
 
 	@Override
 	public int hashCode() {
