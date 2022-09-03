@@ -15,7 +15,7 @@ public class PrestadorDeServicoService {
 	@Autowired
 	private PrestadorDeServicoRepository repo;
 	
-	public PrestadorDeServico buscar(Integer id) {
+	public PrestadorDeServico find(Integer id) {
 		Optional<PrestadorDeServico> obj = repo.findById(id); 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + PrestadorDeServico.class.getName()));

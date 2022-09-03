@@ -21,9 +21,9 @@ public class PrestadorDeServicoResource {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<PrestadorDeServico> find(@PathVariable Integer id) {
 		
-		PrestadorDeServico obj = service.buscar(id);
+		PrestadorDeServico obj = service.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 		
