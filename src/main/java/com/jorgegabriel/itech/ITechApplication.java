@@ -75,6 +75,11 @@ public class ITechApplication implements CommandLineRunner {
 		
 		Categoria cat1 = new Categoria(null, "Categoria 1");
 		Categoria cat2 = new Categoria(null, "Categoria 2");
+		Categoria cat3 = new Categoria(null, "Categoria 3");
+		Categoria cat4 = new Categoria(null, "Categoria 4");
+		Categoria cat5 = new Categoria(null, "Categoria 5");
+		Categoria cat6 = new Categoria(null, "Categoria 6");
+		Categoria cat7 = new Categoria(null, "Categoria 7");
 		
 		Servico s1 = new Servico(null, "Serviço 1", 2000.00);
 		Servico s2 = new Servico(null, "Serviço 2", 800.00);
@@ -92,7 +97,7 @@ public class ITechApplication implements CommandLineRunner {
 		
 		
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3,cat4,cat5,cat6,cat7));
 		servicoRepository.saveAll(Arrays.asList(s1,s2,s3));
 		
 		
