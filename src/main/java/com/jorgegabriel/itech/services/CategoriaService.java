@@ -1,15 +1,16 @@
 package com.jorgegabriel.itech.services;
 
+import java.util.List;
 import java.util.Optional;
 
-import com.jorgegabriel.itech.services.exceptions.DataIntegrityException;
-import com.jorgegabriel.itech.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.jorgegabriel.itech.domain.Categoria;
 import com.jorgegabriel.itech.repositories.CategoriaRepository;
+import com.jorgegabriel.itech.services.exceptions.DataIntegrityException;
+import com.jorgegabriel.itech.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -41,6 +42,10 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui serviços");
 		}
+	}
+	
+	public List<Categoria> findAll(){
+		return repo.findAll();
 	}
 	
 }
