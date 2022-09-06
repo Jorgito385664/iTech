@@ -84,21 +84,42 @@ public class ITechApplication implements CommandLineRunner {
 		Servico s1 = new Servico(null, "Serviço 1", 2000.00);
 		Servico s2 = new Servico(null, "Serviço 2", 800.00);
 		Servico s3 = new Servico(null, "Serviço 3", 80.00);
+		Servico s4 = new Servico(null, "Serviço 4", 300.00);
+		Servico s5 = new Servico(null, "Serviço 5", 50.00);
+		Servico s6 = new Servico(null, "Serviço 6", 200.00);
+		Servico s7 = new Servico(null, "Serviço 7", 1200.00);
+		Servico s8 = new Servico(null, "Serviço 8", 800.00);
+		Servico s9 = new Servico(null, "Serviço 9", 100.00);
+		Servico s10 = new Servico(null, "Serviço 10", 180.00);
+		Servico s11 = new Servico(null, "Serviço 11", 90.00);
 		
 		//associando o serviço com a categoria  e vice versa
 		
 		cat1.getServicos().addAll(Arrays.asList(s1,s2,s3));
-		cat2.getServicos().addAll(Arrays.asList(s2));
+		cat2.getServicos().addAll(Arrays.asList(s2,s4));
+		cat3.getServicos().addAll(Arrays.asList(s5,s6));
+		cat4.getServicos().addAll(Arrays.asList(s1,s2, s3,s7));
+		cat5.getServicos().addAll(Arrays.asList(s8));
+		cat6.getServicos().addAll(Arrays.asList(s9,s10));
+		cat7.getServicos().addAll(Arrays.asList(s11));
 		
-		s1.getCategorias().addAll(Arrays.asList(cat1));
-		s2.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		s3.getCategorias().addAll(Arrays.asList(cat1));
+		s1.getCategorias().addAll(Arrays.asList(cat1,cat4));
+		s2.getCategorias().addAll(Arrays.asList(cat1, cat2, cat4));
+		s3.getCategorias().addAll(Arrays.asList(cat1,cat4));
+		s4.getCategorias().addAll(Arrays.asList(cat2));
+		s5.getCategorias().addAll(Arrays.asList(cat3));
+		s6.getCategorias().addAll(Arrays.asList(cat3));
+		s7.getCategorias().addAll(Arrays.asList(cat4));
+		s8.getCategorias().addAll(Arrays.asList(cat5));
+		s9.getCategorias().addAll(Arrays.asList(cat6));
+		s10.getCategorias().addAll(Arrays.asList(cat6));
+		s11.getCategorias().addAll(Arrays.asList(cat7));
 		
 		
 		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3,cat4,cat5,cat6,cat7));
-		servicoRepository.saveAll(Arrays.asList(s1,s2,s3));
+		servicoRepository.saveAll(Arrays.asList(s1,s2,s3,s4, s5,s6,s7,s8,s9,s10,s11));
 		
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
