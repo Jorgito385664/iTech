@@ -49,9 +49,10 @@ public class PrestadorDeServico implements Serializable{
 	@ManyToMany(mappedBy = "prestadoresDeServico")
 	private List<Servico> servicos = new ArrayList<>();
 	
+	/*
 	@OneToMany(mappedBy="id.prestadorDeServico")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
+	*/
 	//construtores
 	
 	public PrestadorDeServico() {
@@ -142,6 +143,7 @@ public class PrestadorDeServico implements Serializable{
 		this.enderecosPrestador = enderecosPrestador;
 	}
 	
+	/*
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
@@ -150,6 +152,7 @@ public class PrestadorDeServico implements Serializable{
 		this.itens = itens;
 	}
 	
+	*/
 	
 	// hashcode e equals
 

@@ -248,19 +248,20 @@ PrestadorDeServico pds1 =new PrestadorDeServico(null, "Jorge Silva", "jorge@gmai
 		ItemPedido ip1 = new ItemPedido(ped1,s1,pds1,0.00, 2000.00);
 		ItemPedido ip2 = new ItemPedido(ped2,s3,pds2,0.00, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped3,s2,pds1,100.00, 800.00);
+		ItemPedido ip4 = new ItemPedido(ped3,s3,pds2,0.00, 80.00);
 		
 		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
-		ped2.getItens().addAll(Arrays.asList(ip3));
+		ped2.getItens().addAll(Arrays.asList(ip3,ip4));
 		
 		s1.getItens().addAll(Arrays.asList(ip1));
 		s2.getItens().addAll(Arrays.asList(ip3));
-		s3.getItens().addAll(Arrays.asList(ip2));
+		s3.getItens().addAll(Arrays.asList(ip2,ip4));
 		
-		pds1.getItens().addAll(Arrays.asList(ip1,ip2));
-		pds2.getItens().addAll(Arrays.asList(ip3));
+		//pds1.getItens().addAll(Arrays.asList(ip1,ip2));
+		//pds2.getItens().addAll(Arrays.asList(ip3));
 		
 		
-		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3,ip4));
 		
 		
 		

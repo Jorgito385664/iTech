@@ -34,12 +34,16 @@ public class ItemPedido implements Serializable{
 		super();
 		id.setPedido(pedido);
 		id.setServico(servico);
-		id.setPrestadorDeServico(prestadorDeServico);
+		//id.setPrestadorDeServico(prestadorDeServico);
 		this.desconto = desconto;
 		this.preco = preco;
 	}
 	
 	// getters e setters
+	
+	public double getSubTotal() {
+		return preco - desconto;
+	}
 
 	@JsonIgnore
 	public Pedido getPedido() {
@@ -50,10 +54,12 @@ public class ItemPedido implements Serializable{
 		return id.getServico();
 	}
 	
+	/*
+	@JsonIgnore
 	public PrestadorDeServico getPrestadorDeServico() {
 		return id.getPrestadorDeServico();
 	}
-	
+	*/
 	
 	
 	
