@@ -30,7 +30,15 @@ public class ItemPedido implements Serializable{
 	}
 
 
-	public ItemPedido(Pedido pedido, Servico servico, PrestadorDeServico prestadorDeServico, Double desconto, Double preco) {
+	public ItemPedido(Pedido pedido, Servico servico,Double desconto, Double preco) {
+		super();
+		id.setPedido(pedido);
+		id.setServico(servico);
+		this.desconto = desconto;
+		this.preco = preco;
+	}
+	
+	public ItemPedido(Pedido pedido, Servico servico, PrestadorDeServico prestadorDeServico,Double desconto, Double preco) {
 		super();
 		id.setPedido(pedido);
 		id.setServico(servico);
@@ -38,6 +46,7 @@ public class ItemPedido implements Serializable{
 		this.desconto = desconto;
 		this.preco = preco;
 	}
+	
 	
 	// getters e setters
 	
@@ -54,13 +63,14 @@ public class ItemPedido implements Serializable{
 		return id.getServico();
 	}
 	
-	/*
-	@JsonIgnore
-	public PrestadorDeServico getPrestadorDeServico() {
-		return id.getPrestadorDeServico();
+
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
 	}
-	*/
 	
+	public void setServico(Servico servico) {
+		id.setServico(servico);
+	}
 	
 	
 	public ItemPedidoPK getId() {
@@ -91,6 +101,14 @@ public class ItemPedido implements Serializable{
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+	
+	
+	/*
+	@JsonIgnore
+	public PrestadorDeServico getPrestadorDeServico() {
+		return id.getPrestadorDeServico();
+	}
+	*/
 	
 	// hashcode e equals
 
