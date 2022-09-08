@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jorgegabriel.itech.domain.enums.TipoCliente;
+import com.jorgegabriel.itech.domain.enums.TipoPrestador;
 
 @Entity
 public class PrestadorDeServico implements Serializable{
@@ -29,13 +31,15 @@ public class PrestadorDeServico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@Column(unique=true)
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
 	// associações
 	
-	@OneToMany(mappedBy="prestadorDeServico")
+	@OneToMany(mappedBy="prestadorDeServico", cascade = CascadeType.ALL)
 	private List<Endereco> enderecosPrestador = new ArrayList<>();
 	
 	@ElementCollection
@@ -59,13 +63,13 @@ public class PrestadorDeServico implements Serializable{
 		
 	}
 
-	public PrestadorDeServico(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public PrestadorDeServico(Integer id, String nome, String email, String cpfOuCnpj, TipoPrestador tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
 	
 	//getters e setters
@@ -102,11 +106,11 @@ public class PrestadorDeServico implements Serializable{
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
-	public TipoCliente getTipo() {
-		return TipoCliente.toEnum(tipo);
+	public TipoPrestador getTipo() {
+		return TipoPrestador.toEnum(tipo);
 	}
 
-	public void setTipo(TipoCliente tipo) {
+	public void setTipo(TipoPrestador tipo) {
 		this.tipo = tipo.getCod();
 	}
 

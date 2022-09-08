@@ -22,6 +22,7 @@ import com.jorgegabriel.itech.domain.PrestadorDeServico;
 import com.jorgegabriel.itech.domain.Servico;
 import com.jorgegabriel.itech.domain.enums.EstadoPagamento;
 import com.jorgegabriel.itech.domain.enums.TipoCliente;
+import com.jorgegabriel.itech.domain.enums.TipoPrestador;
 import com.jorgegabriel.itech.repositories.CategoriaRepository;
 import com.jorgegabriel.itech.repositories.CidadeRepository;
 import com.jorgegabriel.itech.repositories.ClienteRepository;
@@ -167,7 +168,7 @@ public class ITechApplication implements CommandLineRunner {
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
 		
 		
-PrestadorDeServico pds1 =new PrestadorDeServico(null, "Jorge Silva", "jorge@gmail.com", "12345678901", TipoCliente.PESSOAFISICA);
+PrestadorDeServico pds1 =new PrestadorDeServico(null, "Jorge Silva", "jorge@gmail.com", "12345678901", TipoPrestador.PESSOAFISICA);
 		
 		pds1.getTelefones().addAll(Arrays.asList("23456789", "990123456"));
 		
@@ -198,7 +199,7 @@ PrestadorDeServico pds1 =new PrestadorDeServico(null, "Jorge Silva", "jorge@gmai
 		pedidoRepository.saveAll(Arrays.asList(ped3,ped4));
 		pagamentoRepository.saveAll(Arrays.asList(pagto3,pagto4));
 		
-		PrestadorDeServico pds2 =new PrestadorDeServico(null, "Elias Silva", "elias@gmail.com", "23456789012", TipoCliente.PESSOAJURIDICA);
+		PrestadorDeServico pds2 =new PrestadorDeServico(null, "Elias Silva", "elias@gmail.com", "23456789012", TipoPrestador.PESSOAJURIDICA);
 		
 		pds2.getTelefones().addAll(Arrays.asList("23455678", "991234567"));
 		
