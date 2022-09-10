@@ -31,6 +31,8 @@ public class PrestadorDeServicoService {
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
+	
+	
 	public PrestadorDeServico find(Integer id) {
 		Optional<PrestadorDeServico> obj = repo.findById(id); 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(

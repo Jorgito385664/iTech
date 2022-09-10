@@ -58,6 +58,8 @@ public class PrestadorDeServicoNewDTO  implements Serializable{
 	
 	
 	
+	
+	
 	public PrestadorDeServicoNewDTO() {
 		
 	}
@@ -165,6 +167,8 @@ public class PrestadorDeServicoNewDTO  implements Serializable{
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
 	}
+
+	
 	
 	
 }
