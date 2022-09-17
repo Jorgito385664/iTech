@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jorgegabriel.itech.domain.ItemPedido;
 import com.jorgegabriel.itech.domain.PagamentoComBoleto;
@@ -33,6 +34,13 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
+	@Autowired
+	private PrestadorDeServicoService prestadorDeServicoService;
+	
+	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id); 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -40,9 +48,12 @@ public class PedidoService {
 		
 	}
 	
+	@Transactional
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
+		obj.setCliente(clienteService.find(obj.getCliente().getId()));
+		obj.setPrestadorDeServico(prestadorDeServicoService.find(obj.getPrestadorDeServico().getId()));
 		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		obj.getPagamento().setPedido(obj);
 		
@@ -59,12 +70,13 @@ public class PedidoService {
 		
 		for(ItemPedido ip : obj.getItens()) {
 			ip.setDesconto(0.0);
-			ip.setPreco(servicoService.find(ip.getServico().getId()).getPreco());
+			ip.setServico(servicoService.find(ip.getServico().getId()));
+			ip.setPreco(ip.getServico().getPreco());
 			ip.setPedido(obj);
 		}
 		
 		itemPedidoRepository.saveAll(obj.getItens());
-		
+		 System.out.println(obj);
 		return obj;
 		
 	}
