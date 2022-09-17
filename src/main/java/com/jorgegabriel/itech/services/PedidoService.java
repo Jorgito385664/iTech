@@ -40,7 +40,6 @@ public class PedidoService {
 	@Autowired
 	private PrestadorDeServicoService prestadorDeServicoService;
 	
-	
 	@Autowired
 	private EmailService emailService;
 	
