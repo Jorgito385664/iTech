@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jorgegabriel.itech.domain.Cidade;
 import com.jorgegabriel.itech.domain.Cliente;
 import com.jorgegabriel.itech.domain.Endereco;
+import com.jorgegabriel.itech.domain.enums.Perfil;
 import com.jorgegabriel.itech.domain.enums.TipoCliente;
 import com.jorgegabriel.itech.dto.ClienteDTO;
 import com.jorgegabriel.itech.dto.ClienteNewDTO;
 import com.jorgegabriel.itech.repositories.ClienteRepository;
 import com.jorgegabriel.itech.repositories.EnderecoRepository;
+import com.jorgegabriel.itech.security.UserSS;
+import com.jorgegabriel.itech.services.exceptions.AuthorizationException;
 import com.jorgegabriel.itech.services.exceptions.DataIntegrityException;
 import com.jorgegabriel.itech.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,13 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id); 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
