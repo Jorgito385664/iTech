@@ -21,6 +21,7 @@ import com.jorgegabriel.itech.domain.Pedido;
 import com.jorgegabriel.itech.domain.PrestadorDeServico;
 import com.jorgegabriel.itech.domain.Servico;
 import com.jorgegabriel.itech.domain.enums.EstadoPagamento;
+import com.jorgegabriel.itech.domain.enums.Perfil;
 import com.jorgegabriel.itech.domain.enums.TipoCliente;
 import com.jorgegabriel.itech.domain.enums.TipoPrestador;
 import com.jorgegabriel.itech.repositories.CategoriaRepository;
@@ -131,7 +132,8 @@ public class DBService {
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA,pe.encode("123"));
-		Cliente cli2 = new Cliente(null, "Jorge Gabriel", "jorgegabriel@gmail.com", "05948230058", TipoCliente.PESSOAFISICA,pe.encode("1234"));
+		Cliente cli2 = new Cliente(null, "Jorge Gabriel", "jorgegabriel385664@gmail.com", "05948230058", TipoCliente.PESSOAFISICA,pe.encode("1234"));
+		cli2.addPerfil(Perfil.ADMIN);
 
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		cli2.getTelefones().addAll(Arrays.asList("27364579", "93831456"));
